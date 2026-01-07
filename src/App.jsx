@@ -102,6 +102,11 @@ const App = () => {
 
     setMoney((prevMoney) => prevMoney - fighter.price);
   };
+
+  const totalStrength = team.reduce((acum, fighter) => {
+    return (acum = acum + fighter.strength);
+  }, 0);
+
   return (
     <>
       <h1>Zombie fighters</h1>
@@ -121,6 +126,8 @@ const App = () => {
         ))}
       </ul>
       <h2>Your Team</h2>
+      <p>Total Strength: {totalStrength}</p>
+
       {team.length === 0 ? (
         <p>Pick some team members!</p>
       ) : (
