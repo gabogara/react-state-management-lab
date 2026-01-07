@@ -112,13 +112,12 @@ const App = () => {
   };
 
   const totalStrength = team.reduce((acum, fighter) => {
-    return (acum = acum + fighter.strength);
+    return acum + fighter.strength;
   }, 0);
 
-  const totalAgility = team.reduce(
-    (acum, fighter) => acum + fighter.agility,
-    0
-  );
+  const totalAgility = team.reduce((acum, fighter) => {
+    return acum + fighter.agility;
+  }, 0);
 
   return (
     <>
