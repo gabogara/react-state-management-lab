@@ -86,7 +86,29 @@ const App = () => {
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState(INITIAL_FIGHTERS);
-  return <h1>Zombie fighters</h1>;
+
+  const handleAddFighter = (fighter) => {
+    console.log("Fighter Added");
+  };
+  return (
+    <>
+      <h1>Zombie fighters</h1>
+      <ul>
+        {zombieFighters.map((fighter) => (
+          <li key={fighter.id}>
+            <img src={fighter.img} alt={fighter.name} />
+            <p>
+              <strong>{fighter.name}</strong>
+            </p>
+            <p>Price: {fighter.price}</p>
+            <p>Strength: {fighter.strength}</p>
+            <p>Agility: {fighter.agility}</p>
+            <button onClick={() => handleAddFighter(fighter)}>Add</button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 
 export default App;
