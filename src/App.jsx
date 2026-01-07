@@ -99,6 +99,8 @@ const App = () => {
     setZombieFighters((prevFighters) =>
       prevFighters.filter((f) => f.id !== fighter.id)
     );
+
+    setMoney((prevMoney) => prevMoney - fighter.price);
   };
   return (
     <>
