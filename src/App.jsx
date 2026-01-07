@@ -86,7 +86,7 @@ const App = () => {
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState(INITIAL_FIGHTERS);
-
+  //*******Adding Fighter **********/
   const handleAddFighter = (fighter) => {
     if (money < fighter.price) {
       console.log("Not enough money");
@@ -102,10 +102,23 @@ const App = () => {
 
     setMoney((prevMoney) => prevMoney - fighter.price);
   };
+  //*******Remove Fighter **********/
+  const handleRemoveFighter = (fighter) => {
+    setTeam((prevTeam) => prevTeam.filter((f) => f.id !== fighter.id));
+
+    setZombieFighters((prevFighters) => [...prevFighters, fighter]);
+
+    setMoney((prevMoney) => prevMoney + fighter.price);
+  };
 
   const totalStrength = team.reduce((acum, fighter) => {
     return (acum = acum + fighter.strength);
   }, 0);
+
+  const totalAgility = team.reduce(
+    (acum, fighter) => acum + fighter.agility,
+    0
+  );
 
   return (
     <>
@@ -127,6 +140,7 @@ const App = () => {
       </ul>
       <h2>Your Team</h2>
       <p>Total Strength: {totalStrength}</p>
+      <p>Total Agility: {totalAgility}</p>
 
       {team.length === 0 ? (
         <p>Pick some team members!</p>
@@ -141,6 +155,9 @@ const App = () => {
               <p>Price: {fighter.price}</p>
               <p>Strength: {fighter.strength}</p>
               <p>Agility: {fighter.agility}</p>
+              <button onClick={() => handleRemoveFighter(fighter)}>
+                Remove Fighter
+              </button>
             </li>
           ))}
         </ul>
