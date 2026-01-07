@@ -88,6 +88,11 @@ const App = () => {
   const [zombieFighters, setZombieFighters] = useState(INITIAL_FIGHTERS);
 
   const handleAddFighter = (fighter) => {
+    if (money < fighter.price) {
+      console.log("Not enough money");
+      return;
+    }
+
     console.log("Fighter Added");
     setTeam((prevTeam) => [...prevTeam, fighter]);
 
@@ -113,6 +118,24 @@ const App = () => {
           </li>
         ))}
       </ul>
+      <h2>Your Team</h2>
+      {team.length === 0 ? (
+        <p>Pick some team members!</p>
+      ) : (
+        <ul>
+          {team.map((fighter) => (
+            <li key={fighter.id}>
+              <img src={fighter.img} alt={fighter.name} />
+              <p>
+                <strong>{fighter.name}</strong>
+              </p>
+              <p>Price: {fighter.price}</p>
+              <p>Strength: {fighter.strength}</p>
+              <p>Agility: {fighter.agility}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
