@@ -89,10 +89,16 @@ const App = () => {
 
   const handleAddFighter = (fighter) => {
     console.log("Fighter Added");
+    setTeam((prevTeam) => [...prevTeam, fighter]);
+
+    setZombieFighters((prevFighters) =>
+      prevFighters.filter((f) => f.id !== fighter.id)
+    );
   };
   return (
     <>
       <h1>Zombie fighters</h1>
+      <h2>Money: {money}</h2>
       <ul>
         {zombieFighters.map((fighter) => (
           <li key={fighter.id}>
